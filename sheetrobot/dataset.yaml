@@ -1,0 +1,9 @@
+train: "/home/kbotros/dataset/sheetrobot/images/train/"
+val:   "/home/kbotros/dataset/sheetrobot/images/val/"
+test:  "/home/kbotros/dataset/sheetrobot/images/test/"
+
+# number of classes
+nc: 1 
+
+# class names
+names: ["SheetRobot"]
