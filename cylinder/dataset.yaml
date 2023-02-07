@@ -1,0 +1,9 @@
+train: "/home/kbotros/dataset/cylinder/images/train/"
+val:   "/home/kbotros/dataset/cylinder/images/val/"
+test:  "/home/kbotros/dataset/cylinder/images/test/"
+
+# number of classes
+nc: 1 
+
+# class names
+names: ["Cylinder"]
