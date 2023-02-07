@@ -1,0 +1,9 @@
+train: "/home/kbotros/dataset/flagella/images/train/"
+val:   "/home/kbotros/dataset/flagella/images/val/"
+test:  "/home/kbotros/dataset/flagella/images/test/"
+
+# number of classes
+nc: 1 
+
+# class names
+names: ["flagella"]
