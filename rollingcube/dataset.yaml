@@ -1,0 +1,9 @@
+train: "/home/kbotros/dataset/rollingcube/images/train/"
+val:   "/home/kbotros/dataset/rollingcube/images/val/"
+test:  "/home/kbotros/dataset/rollingcube/images/test/"
+
+# number of classes
+nc: 1 
+
+# class names
+names: ["RoCube"]
