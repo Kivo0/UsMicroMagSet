@@ -1,0 +1,9 @@
+train: "/home/kbotros/dataset/helical/images/train/"
+val:   "/home/kbotros/dataset/helical/images/val/"
+test:  "/home/kbotros/dataset/helical/images/test/"
+
+# number of classes
+nc: 1 
+
+# class names
+names: ["Helical"]

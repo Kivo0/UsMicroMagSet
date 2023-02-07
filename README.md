@@ -17,15 +17,16 @@
     1. Flagella
     2. Chainlike Robot - (Sphere3 folder)
 
+We have recorded the microrobots back and forth in a microfludic channel using 14L5 SP Ultrasound probe.
+The videos are 10 min each for each microrobot.
 
+Contribution to the dataset guidelines will be defined soon. 
 
 
 
 ### The dataset consists of 40K images, this github has 2 branches. Branch 2 is for the Tracking format of the same dataset, to enable the community to either build their own image detector or image tracker.   
-### The Following flowchart is explaining how physical properties and image properties of microrobots is affacting the choice of the Detector or the Tracker. Furthermore, This flowchart can help in decision making for which family of deep neural network could be choosed for a specific physical and image characteristics of microrobots. 
 
-
-   ![png](README_files/Diagramtoalgorithm2.png)
+### we have created a module to visualize the dataset called USMMgSt included with the dataset.
 
     
 
