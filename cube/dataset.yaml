@@ -1,0 +1,9 @@
+train: "/home/kbotros/dataset/cube2/images/train/"
+val:   "/home/kbotros/dataset/cube2/images/val/"
+test:  "/home/kbotros/dataset/cube2/images/test/"
+
+# number of classes
+nc: 1 
+
+# class names
+names: ["cube2"]
