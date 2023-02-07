@@ -24,7 +24,7 @@ Contribution to the dataset guidelines will be defined soon.
 
 
 
-### The dataset consists of 40K images, this github has 2 branches. Branch 2 is for the Tracking format of the same dataset, to enable the community to either build their own image detector or image tracker.   
+### The dataset consists of 40K images, this github repo has 2 dataset formats. format 2 is for the Tracking format of the same dataset located at (USMicroMagSet_For_tracking) folder, to enable the community to either build their own image detector or image tracker.   
 
 ### we have created a module to visualize the dataset called USMMgSt included with the dataset.
 
