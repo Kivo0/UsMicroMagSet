@@ -1,0 +1,9 @@
+train: "/home/kbotros/dataset/sphere3/images/train/"
+val:   "/home/kbotros/dataset/sphere3/images/val/"
+test:  "/home/kbotros/dataset/sphere3/images/test/"
+
+# number of classes
+nc: 1 
+
+# class names
+names: ["Sphere3"]
