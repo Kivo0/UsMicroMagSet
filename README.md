@@ -1,9 +1,14 @@
-## All information and downloadable files presented here are only for review purposes. Any Usage for this dataset is not permitted. 
-***
-
 # USMicroMagSet: Using deep learning analysis to benchmark the performance of microrobots in ultrasound images.
 
-### We are presenting a US image microrobots dataset, that consists of 8 microrobots grouped in 3 Locomotion principals. 
+For attribution, please cite this work as:
+
+> Botros K., Mohammad A., Folio D., and Ferreira A., “USMicroMagSet: Using Deep Learning Analysis to Benchmark the Performance of Microrobots in Ultrasound Images,” Robot. Autom. Lett., pp. 1–8, 2023. doi: [10.1109/10.1109/LRA.2023.3264746](https://doi.org/10.1109/10.1109/LRA.2023.3264746)
+
+
+
+
+## Dataset contents
+We are presenting a US image microrobots dataset, that consists of 8 microrobots grouped in 3 Locomotion principals. 
 
 * Microrobot Class: SMF - Steering magnetic field
     1. Sphere
@@ -17,20 +22,21 @@
     1. Flagella
     2. Chainlike Robot - (Sphere3 folder)
 
-We have recorded the microrobots back and forth in a microfludic channel using 14L5 SP Ultrasound probe.
+We have recorded the microrobots back and forth in a microfludic channel using 14L5 SP Ultrasound probe (Siemens).
 The videos are 10 min each for each microrobot.
+From theses videos 40K images are extracted.
+
+<!--
+format 2 is for the Tracking format of the same dataset located at (USMicroMagSet_For_tracking) folder, to enable the community to either build their own image detector or image tracker. 
+-->
+
+We have created a module to visualize the dataset called USMMgSt included with the dataset.
 
 Contribution to the dataset guidelines will be defined soon. 
-
-
-
-### The dataset consists of 40K images, this github repo has 2 dataset formats. format 2 is for the Tracking format of the same dataset located at (USMicroMagSet_For_tracking) folder, to enable the community to either build their own image detector or image tracker.   
-
-### we have created a module to visualize the dataset called USMMgSt included with the dataset.
-
     
 
 ## Dataset Samples:
+
 
 
 ```python
