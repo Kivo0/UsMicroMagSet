@@ -8,8 +8,12 @@ import os
 import glob
 
 def plotimage_withbbox(img,gt):
-    yx=np.shape(img)
+    """plot image with bbox displayed 
+    inputs
+    img : is the image file to be displayed
+    gt: is the bbox to be displayed normalized in yolov5 format"""
     
+    yx=np.shape(img)
     xg = gt[0]*yx[1]
     yg = gt[1]*yx[0]
     wg = gt[2]*yx[1]
@@ -27,7 +31,10 @@ def readrobot(robotname,batch):
     """read the dataset based on robot name
     input
     robotname: is the name of the robot and subsequently the folder name
-    batch: is the chosen data folder number, 1 for test set , 2 for training set, 3 for validation set """
+    batch: is the chosen data folder number, 1 for test set , 2 for training set, 3 for validation set
+    output
+    labels: all the labels in the subset
+    images: all the images in the subset  """
     if batch == 1:
         pathim = robotname+"/images/test/*.png"
         pathlabel = robotname+"/labels/test/"
@@ -43,6 +50,14 @@ def readrobot(robotname,batch):
     return labels,images
 
 def load_image(name, path):
+    """load the image from path 
+    input
+    name: is the name of the image with the extension (usually .png but maybe .jpg)
+    path: the main path of the image
+
+    output
+    img: returns an img file read by opencv
+    """
     img_path = path + name
     img = cv2.imread(img_path)
     return img
