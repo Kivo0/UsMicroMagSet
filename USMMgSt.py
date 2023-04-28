@@ -77,6 +77,11 @@ def plot_image2(img,title):
     # plt.imsave('image2.png', img)
     
 def plot_grid(img_names, img_root, rows=5, cols=5):
+    """plot images in grid 
+    input 
+    img_names: an array includes the name of each image
+    img_root:  image path (path to the image folder)
+    row,cols: the amount of rows and cols in the image grid, default is 5x5"""
     fig = plt.figure(figsize=(25,25))
     
     for i,name in enumerate(img_names):

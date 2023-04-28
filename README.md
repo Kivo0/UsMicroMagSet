@@ -1,11 +1,5 @@
 # USMicroMagSet: Using deep learning analysis to benchmark the performance of microrobots in ultrasound images.
 
-For attribution, please cite this work as:
-
-> Botros K., Mohammad A., Folio D., and Ferreira A., “USMicroMagSet: Using Deep Learning Analysis to Benchmark the Performance of Microrobots in Ultrasound Images,” Robot. Autom. Lett., pp. 1–8, 2023. doi: [10.1109/10.1109/LRA.2023.3264746](https://doi.org/10.1109/10.1109/LRA.2023.3264746)
-
-
-
 
 ## Dataset contents
 We are presenting a US image microrobots dataset, that consists of 8 microrobots grouped in 3 Locomotion principals. 
@@ -32,12 +26,16 @@ format 2 is for the Tracking format of the same dataset located at (USMicroMagSe
 
 We have created a module to visualize the dataset called USMMgSt included with the dataset.
 
-Contribution to the dataset guidelines will be defined soon. 
+# Licensing
+USMicroMagSet/Ultrasound Micro Magnetic Dataset is free dataset provided under the GNU General Public License (GPLv3). For more information see the COPYING file. We distribute this dataset freely to endorse the use and development of the detection and tracking of microrobots. If you use USMicroMagSet in an academic setting please cite the following paper. If you are interested in a commercial license, please contact me.
+
+Please cite this work as:
     
+> Botros K., Mohammad A., Folio D., and Ferreira A., “USMicroMagSet: Using Deep Learning Analysis to Benchmark the Performance of Microrobots in Ultrasound Images,” Robot. Autom. Lett., pp. 1–8, 2023. doi: [10.1109/10.1109/LRA.2023.3264746](https://doi.org/10.1109/10.1109/LRA.2023.3264746)
+
+
 
 ## Dataset Samples:
-
-
 
 ```python
 labels , images = USMMgSt.readrobot("cube",3)
