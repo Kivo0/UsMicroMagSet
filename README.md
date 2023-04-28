@@ -27,7 +27,7 @@ format 2 is for the Tracking format of the same dataset located at (USMicroMagSe
 We have created a module to visualize the dataset called USMMgSt included with the dataset.
 
 # Licensing
-USMicroMagSet/Ultrasound Micro Magnetic Dataset is free dataset provided under the GNU General Public License (GPLv3). For more information see the COPYING file. We distribute this dataset freely to endorse the use and development of the detection and tracking of microrobots. If you use USMicroMagSet in an academic setting please cite the following paper. If you are interested in a commercial license, please contact me.
+USMicroMagSet/Ultrasound Micro Magnetic Dataset is free dataset provided under the GNU General Public License (GPLv3). For more information see the license file. We distribute this dataset freely to endorse the use and development of the detection and tracking of microrobots in scientific domain. If you use USMicroMagSet in an academic setting please cite the following paper. If you are interested in a commercial license, please contact me.
 
 Please cite this work as:
     
