@@ -24,6 +24,10 @@ def plotimage_withbbox(img,gt):
     plt.imshow(img)
 
 def readrobot(robotname,batch):
+    """read the dataset based on robot name
+    input
+    robotname: is the name of the robot and subsequently the folder name
+    batch: is the chosen data folder number, 1 for test set , 2 for training set, 3 for validation set """
     if batch == 1:
         pathim = robotname+"/images/test/*.png"
         pathlabel = robotname+"/labels/test/"
