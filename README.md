@@ -191,7 +191,7 @@ for i in range(1,7):
 
 
 ```python
-# labels , images = USMMgSt.readrobot("sphere1",3)
+labels , images = USMMgSt.readrobot("sphere1",3)
 fig, ax = plt.subplots(nrows=2, ncols=3, figsize=(40,20))
 for a in ax.ravel():
     a.axis('off')
