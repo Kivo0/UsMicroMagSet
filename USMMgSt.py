@@ -68,6 +68,7 @@ def plot_grid(img_names, img_root, rows=5, cols=5):
 
     
 def draw_bounding_box(img, gt,annotation,annotation1,annotation2,annotation3):
+    """Function to draw the bounding box """
     x1=int(annotation1[0])
     y1=int(annotation1[1])
     w1=int(annotation1[2])
@@ -112,7 +113,6 @@ def draw_bounding_box(img, gt,annotation,annotation1,annotation2,annotation3):
     wgt=int(gt[2])
     hgt=int(gt[3])
     
-
     cv.rectangle(img,(xgt,ygt),(xgt+wgt,ygt+hgt),(36,255,12),4)
     cv.putText(img, 'Groundtruth', (1200, 600), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (36,255,12), 5)
 
