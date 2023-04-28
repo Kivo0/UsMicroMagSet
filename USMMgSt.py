@@ -1,4 +1,3 @@
-
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -24,7 +23,6 @@ def plotimage_withbbox(img,gt):
     cv2.putText(img, 'Groundtruth', (1200, 600), cv2.FONT_HERSHEY_SIMPLEX,4, (36,255,12), 5)
     plt.imshow(img)
 
-
 def readrobot(robotname,batch):
     if batch == 1:
         pathim = robotname+"/images/test/*.png"
@@ -40,9 +38,6 @@ def readrobot(robotname,batch):
     images = [cv2.imread(file) for file in glob.glob(pathim)]
     return labels,images
 
-
-
-
 def load_image(name, path):
     img_path = path + name
     img = cv2.imread(img_path)
@@ -55,7 +50,6 @@ def plot_image(img):
     
 def plot_image2(img,title):
     fig = plt.imshow((img * 255).astype(np.uint32)) 
-
     fig.axes.get_xaxis().set_visible(False)
     fig.axes.get_yaxis().set_visible(False)
     plt.title(title)
@@ -72,18 +66,6 @@ def plot_grid(img_names, img_root, rows=5, cols=5):
         plot_image(img)   
     plt.show()
 
-# def plotimage_withbbox(img,gt):
-#     xg = gt[0]*1920
-#     yg = gt[1]*1080
-#     wg = gt[2]*1920
-#     hg = gt[3]*1080
-#     xgt=int(xg-(wg/2))
-#     ygt=int(yg-(hg/2))
-#     wgt=int(wg)
-#     hgt=int(hg)
-#     cv.rectangle(img,(xgt,ygt),(xgt+wgt,ygt+hgt),(36,255,12),5)
-#     cv.putText(img, 'Groundtruth', (1200, 600), cv.FONT_HERSHEY_SIMPLEX,4, (36,255,12), 5)
-#     plt.imshow(img)
     
 def draw_bounding_box(img, gt,annotation,annotation1,annotation2,annotation3):
     x1=int(annotation1[0])
@@ -106,8 +88,6 @@ def draw_bounding_box(img, gt,annotation,annotation1,annotation2,annotation3):
     ww2 = int(ww2)
     hh2 = int(hh2)
     
-    
-    
     x3=annotation3[0]*1920
     y3=annotation3[1]*1080
     w3=annotation3[2]*1920
@@ -123,8 +103,6 @@ def draw_bounding_box(img, gt,annotation,annotation1,annotation2,annotation3):
     ww3 = int(ww3)
     hh3 = int(hh3)
     
-    
-
     x=int(annotation[0])
     y=int(annotation[1])
     w=int(annotation[2])
@@ -155,6 +133,15 @@ def draw_bounding_box(img, gt,annotation,annotation1,annotation2,annotation3):
     # cv2.putText(img, 'Yolov5', (1200, 1000), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (15,255,255), 5)
     
 def plot_gridwithboundingbox(img_names, img_root,results,annotations, rows, cols):
+    """plot a gred of images with the annotations, 
+    inputs: 
+    img_names: array that include the names of the images
+    img_root: the root path of the images 
+    results: the result bbox array that includes the predicted bbox
+     annotations: the groundtruth array that includes the labbled bbox 
+     row,cols: number of displayed images use the same number in both, its the grid size
+     
+     Output: images displayed in grid form with the labels"""
 #     fig = plt.figure(figsize=(rows*cols,rows*cols))   
     fig = plt.figure(figsize=(25,25))
     
@@ -169,12 +156,18 @@ def plot_gridwithboundingbox(img_names, img_root,results,annotations, rows, cols
     plt.show()    
     
 def getfilenames(images):
+    """get the name of images and save it in array"""
     filenames=[]
     for im in range(0,len(images)):
         filenames.append(images[im].get("file_name"))
     return filenames
 
 def eudist(results,annotations,randomnumber):
+    """"get the euclidian distance between for 1 image
+    inputs
+    results: the array that includes all the predicted bbox
+    annotations: the array that includes all the labels
+    randomnumber: it is a number chosen by the user to show a specific image in the dataset"""
     detectionsres = results.get("bbox")[randomnumber]
     imagegt = annotations[randomnumber]['bbox']
     a0,b0 = ((detectionsres[0] + detectionsres[1]) * 0.5, (detectionsres[2] + detectionsres[3]) * 0.5)
@@ -183,12 +176,20 @@ def eudist(results,annotations,randomnumber):
     return D
 
 def alleudist(results,annotations):
+    """compute the eucldian distance betweeen the predictions and the groundtruth labels
+    input 
+    results: is the results array that includes the preditions bbox
+    annotations: is the labelled microrobots the groundtruth"""
     Dvec=[]
     for i in range(0,len(results.get("bbox"))):
         Dvec.append(eudist(results,annotations,i))
     return Dvec
 
 def get_iou2(bb1, bb2):
+    """get iou between two bboxs 
+    input
+    bb1: is bounding box 1
+    bb2: is bounding box 2"""
     x_left = max(float(bb1[0]),float(bb2[0]))
     y_top = max(float(bb1[1]),float(bb2[1]))
     x_right = min (float(bb1[0])+float(bb1[2]),float(bb2[0])+float(bb2[2]))
@@ -207,6 +208,10 @@ def get_iou2(bb1, bb2):
     return iou
 
 def get_iou(bb1, bb2):
+    """get iou between two bboxs 
+    input
+    bb1: is bounding box 1
+    bb2: is bounding box 2"""
     x_left = max(bb1[0],bb2[0])
     y_top = max(bb1[1],bb2[1])
     x_right = min (bb1[0]+bb1[2],bb2[0]+bb2[2])
@@ -225,6 +230,12 @@ def get_iou(bb1, bb2):
     return iou
 
 def drawrandomimagewithbbox(results0,results1,results2,results3,annotations,filenames,randomnumber):
+    """plot an image with the output of the 4 network predictions displayed on the image
+    inputs
+    results0,1,2,3: are the results arrays that includes the predicted bbox from each network,
+    annotations: are the labbeled bboxs the groundtruth
+    filenames: is the array that includes the image names of the dataset
+    randomnumber: is a number chosen by the user to display an image from the dataset """
     detectionsres0 = results0.get("bbox")[randomnumber]
     detectionsres1 = results1.get("bbox")[randomnumber]
     detectionsrestemp = results2.iloc[randomnumber]
@@ -233,10 +244,11 @@ def drawrandomimagewithbbox(results0,results1,results2,results3,annotations,file
     detectionsres3 = detectionsrestemp[1:5]
     
     imagegt = annotations[randomnumber]['bbox']
-# #     D = eudist(results,annotations,randomnumber)
+    #if neeeded to compute the eculidian difference. 
+    #D = eudist(results,annotations,randomnumber)
     img0=load_image(filenames[randomnumber], imagespath)
     draw_bounding_box(img0,imagegt,detectionsres0,detectionsres1,detectionsres2,detectionsres3)
-#     title = "Euclidean distance gt & detection is = "+ str(D)
+    #title = "Euclidean distance gt & detection is = "+ str(D)
     title = "Detection Results"
     plot_image2(img0,title)
 
@@ -256,6 +268,9 @@ def read_n_to_last_line(filename, n = 1):
     return last_line
 
 def readlabelsgt(path):
+    """read the ground truth from text and place it in an array
+    input
+    path: the path of the annotation files of yolov5 format """
     output0 = pd.DataFrame()
     arr = os.listdir(path)
     headers = (['cls', 'x', 'y', 'w','h'])
@@ -266,6 +281,7 @@ def readlabelsgt(path):
     return output0
 
 def readlabels(path):
+    """Read the predicted bbox from the network"""
     output = pd.DataFrame()
     arr = os.listdir(path)
     headers = (['cls', 'x', 'y', 'w','h','conf'])
