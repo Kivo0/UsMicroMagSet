@@ -59,8 +59,9 @@ def plot_image2(img,title):
     fig.axes.get_xaxis().set_visible(False)
     fig.axes.get_yaxis().set_visible(False)
     plt.title(title)
-    # plt.savefig('here.png', bbox_inches='tight',transparent=True, pad_inches=0)
-    # plt.imsave('here2.png', img)
+    # if you need to save the fig
+    # plt.savefig('image1.png', bbox_inches='tight',transparent=True, pad_inches=0)
+    # plt.imsave('image2.png', img)
     
 def plot_grid(img_names, img_root, rows=5, cols=5):
     fig = plt.figure(figsize=(25,25))
@@ -134,20 +135,24 @@ def draw_bounding_box(img, gt,annotation,annotation1,annotation2,annotation3):
     hgt=int(gt[3])
     
 
-    cv.rectangle(img,(xgt,ygt),(xgt+wgt-25,ygt+hgt-10),(36,255,12),4)
+    cv.rectangle(img,(xgt,ygt),(xgt+wgt,ygt+hgt),(36,255,12),4)
     cv.putText(img, 'Groundtruth', (1200, 600), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (36,255,12), 5)
 
-    cv.rectangle(img,(x+20,y),(x+w-15,y+h-15),(255,0,0),3)
-#     cv2.putText(img, 'MaskRCNN', (1200, 700), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (255,0,0), 5)
+    cv.rectangle(img,(x,y),(x+w,y+h),(255,0,0),3)
+    # if needed to display the results
+    # cv2.putText(img, 'MaskRCNN', (1200, 700), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (255,0,0), 5)
     
-    cv.rectangle(img,(x1+15,y1+4),(x1+w1,y1+h1),(36,12,255),3)
-#     cv2.putText(img, 'FasterRCNN', (1200,800), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (36,12,255), 5)
+    cv.rectangle(img,(x1,y1),(x1+w1,y1+h1),(36,12,255),3)
+    # if needed to display the results
+    # cv2.putText(img, 'FasterRCNN', (1200,800), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (36,12,255), 5)
     
-    cv.rectangle(img,(x2new+20,y2new-3),(ww2,hh2),(255,12,255),3)
-#     cv2.putText(img, 'Tphyolov5', (1200, 900), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (255,15,255), 5)
+    cv.rectangle(img,(x2new,y2new),(ww2,hh2),(255,12,255),3)
+    # if needed to display the results
+    # cv2.putText(img, 'Tphyolov5', (1200, 900), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (255,15,255), 5)
     
-    cv.rectangle(img,(x3new-1,y3new+20),(ww3,hh3),(15,255,255),3)
-#     cv2.putText(img, 'Yolov5', (1200, 1000), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (15,255,255), 5)
+    cv.rectangle(img,(x3new,y3new),(ww3,hh3),(15,255,255),3)
+    # if needed to display the results
+    # cv2.putText(img, 'Yolov5', (1200, 1000), cv2.FONT_HERSHEY_SIMPLEX, 2.5, (15,255,255), 5)
     
 def plot_gridwithboundingbox(img_names, img_root,results,annotations, rows, cols):
 #     fig = plt.figure(figsize=(rows*cols,rows*cols))   
@@ -168,6 +173,7 @@ def getfilenames(images):
     for im in range(0,len(images)):
         filenames.append(images[im].get("file_name"))
     return filenames
+
 def eudist(results,annotations,randomnumber):
     detectionsres = results.get("bbox")[randomnumber]
     imagegt = annotations[randomnumber]['bbox']
@@ -175,11 +181,13 @@ def eudist(results,annotations,randomnumber):
     a1,b1 = ((imagegt[0] + imagegt[1]) * 0.5, (imagegt[2] + imagegt[3]) * 0.5)
     D = dist.euclidean((a0, b0), (a1,b1))
     return D
+
 def alleudist(results,annotations):
     Dvec=[]
     for i in range(0,len(results.get("bbox"))):
         Dvec.append(eudist(results,annotations,i))
     return Dvec
+
 def get_iou2(bb1, bb2):
     x_left = max(float(bb1[0]),float(bb2[0]))
     y_top = max(float(bb1[1]),float(bb2[1]))
@@ -246,6 +254,7 @@ def read_n_to_last_line(filename, n = 1):
             f.seek(0)
         last_line = f.readline().decode()
     return last_line
+
 def readlabelsgt(path):
     output0 = pd.DataFrame()
     arr = os.listdir(path)
@@ -267,12 +276,17 @@ def readlabels(path):
             speed=read_n_to_last_line(path+i, n = 1)
     output.columns=headers
     return output,speed
+
 def getioutxt(bboxres,bboxgt):
+    """ function to compute the IOU from the network output"""
     ioures_v=[]
     for i in range(0,len(bboxgt)):
         ioures_v.append(get_iou2(bboxres[i], bboxgt[i]))
     return ioures_v
+
 def readlabelsbothgt(pathres,pathgt):
+    """ function to read the labels with groundtruth from the network results
+    inputs are the results path and path of the groundtruth labels, outputs are 2 dataframes output0 is the bb for the gt and output1 is the bb for the results"""
     output0 = pd.DataFrame()
     output1 = pd.DataFrame()
     arr1 = os.listdir(pathres)
